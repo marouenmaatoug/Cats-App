@@ -4,6 +4,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import styled from "styled-components";
 
+interface Cat {
+    url: string;
+    breeds: {
+        name: string;
+        origin: string;
+        temperament: string;
+        description: string;
+    }[];
+}
+
 const StyledCard = styled(Card)`
     width: 25rem;
     text-align: center;
@@ -13,6 +23,7 @@ const StyledCard = styled(Card)`
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
 `;
+
 const GoBackButton = styled(Link)`
     text-decoration: none;
     background-color: gray;
@@ -31,8 +42,11 @@ const GoBackButton = styled(Link)`
     }
 `;
 
-const SingleCatPage = () => {
-    const [cat, setCat] = useState([]);
+const SingleCatPage: React.FC = () => {
+    const [cat, setCat] = useState<Cat>({
+        url: "",
+        breeds: [],
+    });
     const { id } = useParams();
     const navigate = useNavigate();
 

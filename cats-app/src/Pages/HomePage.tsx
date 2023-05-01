@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, ChangeEvent } from "react";
+import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BreedContext } from "../context/context";
@@ -60,12 +61,12 @@ const CenteredSpinner = styled(Spinner)`
     left: 50%;
 `;
 
-const HomePage = () => {
-    const [breeds, setBreeds] = useState([]);
+const HomePage = (): JSX.Element => {
+    const [breeds, setBreeds] = useState<any[]>([]);
     const { selectedBreed, setSelectedBreed } = useContext(BreedContext);
-    const [cats, setCats] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [loadedCats, setLoadedCats] = useState(4);
+    const [cats, setCats] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [loadedCats, setLoadedCats] = useState<number>(4);
 
     useEffect(() => {
         // Fetch list of breeds from API
@@ -119,7 +120,7 @@ const HomePage = () => {
         }
     }, [selectedBreed]);
 
-    const handleBreedChange = (event) => {
+    const handleBreedChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedBreed(event.target.value);
     };
     const handleMoreCats = () => {

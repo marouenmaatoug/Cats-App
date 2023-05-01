@@ -5,7 +5,7 @@ import HomePage from "./Pages/HomePage";
 import SingleCatPage from "./Pages/SingleCatPage";
 import { BreedProvider } from "./context/context";
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <div className="App">
             <BreedProvider>
